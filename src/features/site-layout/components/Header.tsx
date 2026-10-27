@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { links } from "@/shared/config/links";
+import { externalLinkProps, links } from "@/shared/config/links";
 import type { Locale } from "@/shared/i18n";
 import type { SiteContent } from "../content";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -14,25 +13,28 @@ const pillLink =
 const navItem =
   "whitespace-nowrap text-[15.5px] font-semibold text-body hover:text-azure";
 
+export type SitePage = "home" | "suppliers" | "contact";
+
 export default function Header({
   lang,
+  page,
   t,
   logoAlt,
   registerSupplier,
   startBuying,
 }: {
   lang: Locale;
+  page: SitePage;
   t: SiteContent["header"];
   logoAlt: string;
   registerSupplier: string;
   startBuying: string;
 }) {
-  const pathname = usePathname();
   const [menu, setMenu] = useState(false);
 
-  const isSup = pathname === "/suppliers";
+  const isSup = page === "suppliers";
   // On the contact page, in-page anchors point at the home page sections.
-  const base = pathname === "/contact" ? "/" : "";
+  const base = page === "contact" ? "/" : "";
   const nav = (id: string) => `${base}#${id}`;
 
   const close = () => setMenu(false);
@@ -50,7 +52,7 @@ export default function Header({
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[76px] max-w-[1200px] items-center gap-7 px-6">
+      <div className="mx-auto box-content flex h-[76px] max-w-[1200px] items-center gap-7 px-6">
         <Link href="/" className="flex shrink-0 items-center" onClick={close}>
           <Image
             src="/images/Creda_Logo_v2.png"
@@ -87,12 +89,14 @@ export default function Header({
           {switcher}
           <a
             href={links.login}
+            {...externalLinkProps}
             className="flex h-11 items-center rounded-[10px] border border-line-strong bg-white px-5 text-[15px] font-bold text-ink hover:text-ink"
           >
             {t.login}
           </a>
           <a
             href={ctaHref}
+            {...externalLinkProps}
             className="flex h-11 items-center rounded-[10px] bg-brand px-[22px] text-[15px] font-bold text-white transition-colors hover:bg-brand-hover hover:text-white"
           >
             {ctaLabel}
@@ -152,12 +156,14 @@ export default function Header({
           <div className="mt-2 grid grid-cols-2 gap-2.5">
             <a
               href={links.login}
+              {...externalLinkProps}
               className="flex h-12 items-center justify-center rounded-[10px] border border-line-strong text-[15.5px] font-bold text-ink"
             >
               {t.login}
             </a>
             <a
               href={ctaHref}
+              {...externalLinkProps}
               className="flex h-12 items-center justify-center rounded-[10px] bg-brand text-[15.5px] font-bold text-white"
             >
               {ctaLabel}

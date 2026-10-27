@@ -17,7 +17,7 @@ export function SignupCta({
 }) {
   return (
     <section id="signup" className="scroll-mt-20 bg-soft">
-      <div className="mx-auto flex max-w-[820px] flex-col items-center gap-[18px] px-6 py-[104px] text-center">
+      <div className="mx-auto box-content flex max-w-[820px] flex-col items-center gap-[18px] px-6 py-[104px] text-center">
         <h2
           className={`m-0 text-[clamp(30px,4vw,46px)] leading-[1.4] font-extrabold text-ink ${
             balance ? "text-balance" : ""

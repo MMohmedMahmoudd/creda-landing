@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Cairo } from "next/font/google";
 import "../globals.css";
 import Footer from "@/features/site-layout/components/Footer";
-import Header from "@/features/site-layout/components/Header";
 import { getSiteContent } from "@/features/site-layout/content";
 import { getSharedContent } from "@/shared/content";
 import { getDir, hasLocale, locales } from "@/shared/i18n";
@@ -41,14 +40,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} dir={getDir(lang)} className={`${cairo.variable} h-full`}>
       <body className="flex min-h-screen flex-col bg-white font-sans text-ink">
-        <Header
-          lang={lang}
-          t={site.header}
-          logoAlt={common.logoAlt}
-          registerSupplier={common.registerSupplier}
-          startBuying={common.startBuying}
-        />
-        <div className="flex-1">{children}</div>
+        {children}
         <Footer t={site.footer} logoAlt={common.logoAlt} />
       </body>
     </html>

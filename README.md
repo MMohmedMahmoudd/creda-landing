@@ -23,9 +23,10 @@ npm run dev
 
 ## Configuration
 
-Copy `.env.example` to `.env.local`:
+Public URLs live in `.env` (committed, since they are not secrets). Override them locally in `.env.local`, or per environment in your host's settings. They are read in `src/shared/config/links.ts`; the build fails if one is missing.
 
-- `NEXT_PUBLIC_AUTH_URL` — URL of the sign-in / registration app. The buyer and supplier buttons append `?role=buyer` / `?role=supplier`. Unset, those buttons link to `#`.
+- `NEXT_PUBLIC_BUYER_URL` — buyer app. Used by every "Start buying" button and by "Log in".
+- `NEXT_PUBLIC_SUPPLIER_REGISTER_URL` — supplier registration. Used by every "Register as a supplier" button.
 
 ## Structure (feature-based)
 
