@@ -3,14 +3,19 @@ import { Container } from "@/shared/components/Section";
 import { externalLinkProps, links } from "@/shared/config/links";
 import SiteHeader from "@/features/site-layout/SiteHeader";
 import type { Locale } from "@/shared/i18n";
+import { getContactSubjects } from "./api";
 import ContactForm from "./components/ContactForm";
 import { getContactContent } from "./content";
 
 const linkCls =
   "border-b-[1.5px] border-sky-200 pb-0.5 text-[15.5px] font-bold text-brand hover:text-azure";
 
-export default function ContactPage({ lang }: { lang: Locale }) {
+export default async function ContactPage({ lang }: { lang: Locale }) {
   const t = getContactContent(lang);
+  const subjects = (await getContactSubjects()).map((s) => ({
+    value: String(s.id),
+    label: s.title[lang],
+  }));
 
   return (
     <>
@@ -31,7 +36,7 @@ export default function ContactPage({ lang }: { lang: Locale }) {
         <section>
           <Container className="flex flex-wrap items-start gap-10 pt-14 pb-24">
             <div className="min-w-0 flex-[2_1_560px] rounded-[18px] border border-line bg-white p-8 shadow-[0_1px_2px_rgba(16,24,40,.05)]">
-              <ContactForm t={t} />
+              <ContactForm t={t} subjects={subjects} />
             </div>
 
             <aside className="flex min-w-0 flex-[1_1_300px] flex-col gap-4">

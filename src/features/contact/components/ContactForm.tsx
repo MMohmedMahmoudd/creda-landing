@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Select, { type SelectOption } from "@/shared/components/Select";
+import { submitContact } from "../actions";
 import type { ContactContent } from "../content";
 
 type Role = "buyer" | "supplier" | "other";
@@ -14,7 +16,7 @@ type Fields = {
   msg: string;
 };
 type Errors = Partial<
-  Record<"name" | "phone" | "email" | "topic" | "msg", true>
+  Record<"name" | "company" | "phone" | "email" | "topic" | "msg", true>
 >;
 
 const empty = (role: Role): Fields => ({
@@ -31,8 +33,8 @@ function validate(f: Fields): Errors {
   const e: Errors = {};
   if (!f.name.trim()) e.name = true;
   if (f.phone.replace(/\D/g, "").length < 9) e.phone = true;
-  if (f.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim()))
-    e.email = true;
+  if (!f.company.trim()) e.company = true;
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim())) e.email = true;
   if (!f.topic) e.topic = true;
   if (!f.msg.trim()) e.msg = true;
   return e;
@@ -43,7 +45,15 @@ const inputCls =
   "box-border h-12 w-full rounded-[9px] border border-line-strong bg-white px-3.5 font-[inherit] text-[15.5px] text-ink outline-none focus:border-azure focus:shadow-[0_0_0_4px_#d3e8fd]";
 const errCls = "mt-1.5 text-[13px] font-semibold text-error";
 
-export default function ContactForm({ t }: { t: ContactContent }) {
+export default function ContactForm({
+  t,
+  subjects,
+}: {
+  t: ContactContent;
+  subjects: SelectOption[];
+}) {
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [f, setF] = useState<Fields>(empty("buyer"));
   const [err, setErr] = useState<Errors>({});
   const [tried, setTried] = useState(false);
@@ -56,20 +66,34 @@ export default function ContactForm({ t }: { t: ContactContent }) {
     setErr(tried ? validate(next) : {});
   };
 
-  const submit = () => {
+  const submit = async () => {
+    if (sending) return;
     const e = validate(f);
     if (Object.keys(e).length) {
       setErr(e);
       setTried(true);
       return;
     }
-    // No backend in the reference design; wire this up to your endpoint of choice.
+    setSending(true);
+    setFailed(false);
+    const { ok } = await submitContact({
+      type: f.role,
+      name: f.name.trim(),
+      entity_name: f.company.trim(),
+      mobile: f.phone.trim(),
+      email: f.email.trim(),
+      contact_subject_id: f.topic,
+      message: f.msg.trim(),
+    });
+    setSending(false);
+    if (!ok) return setFailed(true);
     setSent(true);
     window.scrollTo(0, 0);
   };
 
   const reset = () => {
     setSent(false);
+    setFailed(false);
     setTried(false);
     setErr({});
     setF(empty(f.role));
@@ -158,16 +182,14 @@ export default function ContactForm({ t }: { t: ContactContent }) {
           {err.name && <div className={errCls}>{form.errors.name}</div>}
         </label>
         <label>
-          <span className={labelCls}>
-            {form.company}{" "}
-            <span className="font-medium text-faint">{form.optional}</span>
-          </span>
+          <span className={labelCls}>{form.company}</span>
           <input
             className={inputCls}
             value={f.company}
             onChange={(e) => set("company", e.target.value)}
             placeholder={form.companyPh}
           />
+          {err.company && <div className={errCls}>{form.errors.company}</div>}
         </label>
         <label>
           <span className={labelCls}>{form.phone}</span>
@@ -182,10 +204,7 @@ export default function ContactForm({ t }: { t: ContactContent }) {
           {err.phone && <div className={errCls}>{form.errors.phone}</div>}
         </label>
         <label>
-          <span className={labelCls}>
-            {form.email}{" "}
-            <span className="font-medium text-faint">{form.optional}</span>
-          </span>
+          <span className={labelCls}>{form.email}</span>
           <input
             className={`${inputCls} text-start`}
             dir="ltr"
@@ -200,18 +219,13 @@ export default function ContactForm({ t }: { t: ContactContent }) {
 
       <label>
         <span className={labelCls}>{form.topic}</span>
-        <select
-          className={`${inputCls} cursor-pointer`}
+        <Select
+          className={inputCls}
           value={f.topic}
-          onChange={(e) => set("topic", e.target.value)}
-        >
-          <option value="">{form.topicPh}</option>
-          {form.topics.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </select>
+          options={subjects}
+          placeholder={form.topicPh}
+          onChange={(v) => set("topic", v)}
+        />
         {err.topic && <div className={errCls}>{form.errors.topic}</div>}
       </label>
 
@@ -230,11 +244,18 @@ export default function ContactForm({ t }: { t: ContactContent }) {
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
-          className="h-[52px] cursor-pointer rounded-[10px] border-0 bg-brand px-[34px] font-[inherit] text-[16.5px] font-bold text-white transition-colors hover:bg-brand-hover"
+          disabled={sending}
+          className="h-[52px] cursor-pointer rounded-[10px] border-0 bg-brand px-[34px] font-[inherit] text-[16.5px] font-bold text-white transition-colors hover:bg-brand-hover disabled:cursor-wait disabled:opacity-60"
         >
           {form.submit}
         </button>
-        <span className="text-sm text-muted">{form.privacy}</span>
+        {failed ? (
+          <span className="text-sm font-semibold text-error">
+            {form.submitError}
+          </span>
+        ) : (
+          <span className="text-sm text-muted">{form.privacy}</span>
+        )}
       </div>
     </form>
   );
