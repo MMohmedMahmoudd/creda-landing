@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Cairo } from "next/font/google";
 import "../globals.css";
 import Footer from "@/features/site-layout/components/Footer";
-import Header from "@/features/site-layout/components/Header";
 import { getSiteContent } from "@/features/site-layout/content";
 import { getSharedContent } from "@/shared/content";
 import { getDir, hasLocale, locales } from "@/shared/i18n";

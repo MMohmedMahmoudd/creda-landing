@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { externalLinkProps } from "@/shared/config/links";
 
 export function Eyebrow({
   children,
@@ -104,7 +105,7 @@ export function ButtonLink({
     );
   }
   return (
-    <a href={href} className={cls}>
+    <a href={href} className={cls} {...externalLinkProps}>
       {children}
     </a>
   );

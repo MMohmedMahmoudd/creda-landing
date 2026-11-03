@@ -15,7 +15,7 @@ export function SectionContainer({
 }) {
   return (
     <div
-      className={`mx-auto flex max-w-[1200px] flex-col px-6 py-24 ${gap} ${className}`}
+      className={`mx-auto box-content flex max-w-[1200px] flex-col px-6 py-24 ${gap} ${className}`}
     >
       {children}
     </div>
@@ -50,6 +50,8 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={`mx-auto max-w-[1200px] px-6 ${className}`}>{children}</div>
+    <div className={`mx-auto box-content max-w-[1200px] px-6 ${className}`}>
+      {children}
+    </div>
   );
 }

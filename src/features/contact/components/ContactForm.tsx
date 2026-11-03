@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Select, { type SelectOption } from "@/shared/components/Select";
+import { submitContact } from "../actions";
 import type { ContactContent } from "../content";
 
 type Role = "buyer" | "supplier" | "other";
@@ -13,9 +15,17 @@ type Fields = {
   topic: string;
   msg: string;
 };
+type ErrorKey = keyof ContactContent["form"]["errors"];
 type Errors = Partial<
-  Record<"name" | "phone" | "email" | "topic" | "msg", true>
+  Record<"name" | "company" | "phone" | "email" | "topic" | "msg", ErrorKey>
 >;
+
+// Same rules as the buyer app's register form (auth.validator.ts): Saudi mobile only,
+// entered without the +966 prefix, 9 digits starting with 5.
+const SAUDI_MOBILE_REGEX = /^5\d{8}$/;
+// Same pattern zod's `.email()` uses in the buyer app.
+const EMAIL_REGEX =
+  /^(?!\.)(?!.*\.\.)([A-Z0-9_'+\-.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9-]*\.)+[A-Z]{2,}$/i;
 
 const empty = (role: Role): Fields => ({
   role,
@@ -29,12 +39,16 @@ const empty = (role: Role): Fields => ({
 
 function validate(f: Fields): Errors {
   const e: Errors = {};
-  if (!f.name.trim()) e.name = true;
-  if (f.phone.replace(/\D/g, "").length < 9) e.phone = true;
-  if (f.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim()))
-    e.email = true;
-  if (!f.topic) e.topic = true;
-  if (!f.msg.trim()) e.msg = true;
+  const phone = f.phone.trim();
+  const email = f.email.trim();
+  if (!f.name.trim()) e.name = "name";
+  if (!f.company.trim()) e.company = "company";
+  if (phone.length !== 9) e.phone = "phoneExact9";
+  else if (!SAUDI_MOBILE_REGEX.test(phone)) e.phone = "phoneStart5";
+  if (!email) e.email = "emailRequired";
+  else if (!EMAIL_REGEX.test(email)) e.email = "email";
+  if (!f.topic) e.topic = "topic";
+  if (!f.msg.trim()) e.msg = "msg";
   return e;
 }
 
@@ -43,7 +57,15 @@ const inputCls =
   "box-border h-12 w-full rounded-[9px] border border-line-strong bg-white px-3.5 font-[inherit] text-[15.5px] text-ink outline-none focus:border-azure focus:shadow-[0_0_0_4px_#d3e8fd]";
 const errCls = "mt-1.5 text-[13px] font-semibold text-error";
 
-export default function ContactForm({ t }: { t: ContactContent }) {
+export default function ContactForm({
+  t,
+  subjects,
+}: {
+  t: ContactContent;
+  subjects: SelectOption[];
+}) {
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [f, setF] = useState<Fields>(empty("buyer"));
   const [err, setErr] = useState<Errors>({});
   const [tried, setTried] = useState(false);
@@ -53,23 +75,49 @@ export default function ContactForm({ t }: { t: ContactContent }) {
   const set = <K extends keyof Fields>(k: K, v: Fields[K]) => {
     const next = { ...f, [k]: v };
     setF(next);
-    setErr(tried ? validate(next) : {});
+    // Like the buyer register form (mode/reValidateMode "onBlur"): before the first submit,
+    // errors only change when a field is left, not on every keystroke.
+    setErr(tried ? validate(next) : err);
   };
 
-  const submit = () => {
+  const validateOnBlur = (k: keyof Errors) => {
+    const { [k]: fieldErr } = validate(f);
+    setErr((prev) => {
+      const next = { ...prev };
+      if (fieldErr) next[k] = fieldErr;
+      else delete next[k];
+      return next;
+    });
+  };
+
+  const submit = async () => {
+    if (sending) return;
     const e = validate(f);
     if (Object.keys(e).length) {
       setErr(e);
       setTried(true);
       return;
     }
-    // No backend in the reference design; wire this up to your endpoint of choice.
+    setSending(true);
+    setFailed(false);
+    const { ok } = await submitContact({
+      type: f.role,
+      name: f.name.trim(),
+      entity_name: f.company.trim(),
+      mobile: f.phone.trim(),
+      email: f.email.trim(),
+      contact_subject_id: f.topic,
+      message: f.msg.trim(),
+    });
+    setSending(false);
+    if (!ok) return setFailed(true);
     setSent(true);
     window.scrollTo(0, 0);
   };
 
   const reset = () => {
     setSent(false);
+    setFailed(false);
     setTried(false);
     setErr({});
     setF(empty(f.role));
@@ -155,64 +203,71 @@ export default function ContactForm({ t }: { t: ContactContent }) {
             onChange={(e) => set("name", e.target.value)}
             placeholder={form.namePh}
           />
-          {err.name && <div className={errCls}>{form.errors.name}</div>}
+          {err.name && <div className={errCls}>{form.errors[err.name]}</div>}
         </label>
         <label>
-          <span className={labelCls}>
-            {form.company}{" "}
-            <span className="font-medium text-faint">{form.optional}</span>
-          </span>
+          <span className={labelCls}>{form.company}</span>
           <input
             className={inputCls}
             value={f.company}
             onChange={(e) => set("company", e.target.value)}
             placeholder={form.companyPh}
           />
+          {err.company && (
+            <div className={errCls}>{form.errors[err.company]}</div>
+          )}
         </label>
         <label>
           <span className={labelCls}>{form.phone}</span>
-          <input
-            className={`${inputCls} text-start`}
+          <div
             dir="ltr"
-            inputMode="tel"
-            value={f.phone}
-            onChange={(e) => set("phone", e.target.value)}
-            placeholder={form.phonePh}
-          />
-          {err.phone && <div className={errCls}>{form.errors.phone}</div>}
+            className="flex h-12 items-center rounded-[9px] border border-line-strong bg-white px-3.5 focus-within:border-azure focus-within:shadow-[0_0_0_4px_#d3e8fd]"
+          >
+            <span className="mr-2 shrink-0 border-r border-line-strong pr-2.5 text-[15.5px] font-medium text-body">
+              +966
+            </span>
+            <input
+              className="h-full min-w-0 flex-1 border-0 bg-transparent font-[inherit] text-[15.5px] text-ink outline-none"
+              type="tel"
+              inputMode="numeric"
+              autoComplete="tel-national"
+              maxLength={9}
+              value={f.phone}
+              onChange={(e) => set("phone", e.target.value.replace(/\D/g, ""))}
+              onBlur={() => validateOnBlur("phone")}
+              placeholder={form.phonePh}
+            />
+          </div>
+          {err.phone && <div className={errCls}>{form.errors[err.phone]}</div>}
         </label>
         <label>
-          <span className={labelCls}>
-            {form.email}{" "}
-            <span className="font-medium text-faint">{form.optional}</span>
-          </span>
+          <span className={labelCls}>{form.email}</span>
           <input
             className={`${inputCls} text-start`}
             dir="ltr"
-            type="email"
+            type="text"
+            inputMode="email"
+            autoComplete="email"
             value={f.email}
-            onChange={(e) => set("email", e.target.value)}
+            onKeyDown={(e) => e.key === " " && e.preventDefault()}
+            onBlur={() => validateOnBlur("email")}
+            onChange={(e) => set("email", e.target.value.replace(/\s/g, ""))}
             placeholder={form.emailPh}
           />
-          {err.email && <div className={errCls}>{form.errors.email}</div>}
+          {err.email && <div className={errCls}>{form.errors[err.email]}</div>}
         </label>
       </div>
 
       <label>
         <span className={labelCls}>{form.topic}</span>
-        <select
-          className={`${inputCls} cursor-pointer`}
+        <Select
+          className={inputCls}
           value={f.topic}
-          onChange={(e) => set("topic", e.target.value)}
-        >
-          <option value="">{form.topicPh}</option>
-          {form.topics.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </select>
-        {err.topic && <div className={errCls}>{form.errors.topic}</div>}
+          options={subjects}
+          placeholder={form.topicPh}
+          onChange={(v) => set("topic", v)}
+        />
+        {err.topic && <div className={errCls}>{form.errors[err.topic]}</div>}
       </label>
 
       <label>
@@ -224,17 +279,24 @@ export default function ContactForm({ t }: { t: ContactContent }) {
           onChange={(e) => set("msg", e.target.value)}
           placeholder={form.messagePh}
         />
-        {err.msg && <div className={errCls}>{form.errors.msg}</div>}
+        {err.msg && <div className={errCls}>{form.errors[err.msg]}</div>}
       </label>
 
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
-          className="h-[52px] cursor-pointer rounded-[10px] border-0 bg-brand px-[34px] font-[inherit] text-[16.5px] font-bold text-white transition-colors hover:bg-brand-hover"
+          disabled={sending}
+          className="h-[52px] cursor-pointer rounded-[10px] border-0 bg-brand px-[34px] font-[inherit] text-[16.5px] font-bold text-white transition-colors hover:bg-brand-hover disabled:cursor-wait disabled:opacity-60"
         >
           {form.submit}
         </button>
-        <span className="text-sm text-muted">{form.privacy}</span>
+        {failed ? (
+          <span className="text-sm font-semibold text-error">
+            {form.submitError}
+          </span>
+        ) : (
+          <span className="text-sm text-muted">{form.privacy}</span>
+        )}
       </div>
     </form>
   );
