@@ -1,15 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import LegalLinks from "@/features/legal/components/LegalLinks";
 import { Container } from "@/shared/components/Section";
+import type { Locale } from "@/shared/i18n";
 import type { SiteContent } from "../content";
 
 const item = "text-[15px] text-on-navy hover:text-white";
 const head = "mb-1 text-[15px] font-extrabold text-white";
 
 export default function Footer({
+  lang,
   t,
   logoAlt,
 }: {
+  lang: Locale;
   t: SiteContent["footer"];
   logoAlt: string;
 }) {
@@ -54,12 +58,11 @@ export default function Footer({
             <Link href="/contact" className={item}>
               {t.contact}
             </Link>
-            <a href="#" className={item}>
-              {t.terms}
-            </a>
-            <a href="#" className={item}>
-              {t.privacy}
-            </a>
+            <LegalLinks
+              lang={lang}
+              labels={{ terms: t.terms, privacy: t.privacy }}
+              closeLabel={t.closeLabel}
+            />
           </div>
         </div>
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-2.5 border-t border-on-navy/15 pt-[22px] text-sm text-[#9db0cc]">
