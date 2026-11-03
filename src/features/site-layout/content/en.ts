@@ -31,6 +31,7 @@ const en: SiteContent = {
     contact: "Contact us",
     terms: "Terms & conditions",
     privacy: "Privacy policy",
+    closeLabel: "Close",
     rights: "© 2026 Creda. All rights reserved.",
     built: "Developed by Vertex for Information Technology and AI",
   },

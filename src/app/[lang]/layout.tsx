@@ -49,7 +49,7 @@ export default async function RootLayout({
           startBuying={common.startBuying}
         />
         <div className="flex-1">{children}</div>
-        <Footer t={site.footer} logoAlt={common.logoAlt} />
+        <Footer lang={lang} t={site.footer} logoAlt={common.logoAlt} />
       </body>
     </html>
   );

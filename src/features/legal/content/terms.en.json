@@ -1,0 +1,371 @@
+{
+    "title": "Terms of Use",
+    "sections": [
+        {
+            "title": "Introduction and Acceptance of Terms",
+            "blocks": [
+                {
+                    "type": "p",
+                    "text": "The Creda platform is operated by Creda Solutions Trading Company Limited, Commercial Registration No. 70551105311, headquartered in the Kingdom of Saudi Arabia – Dammam – Short Address EMDA6372 (“Creda” or “we”)."
+                },
+                {
+                    "type": "p",
+                    "text": "These Terms govern the relationship between you and Creda when you use the platform website, the Buyer and Supplier portals, and all services provided through them. By creating an account or using the platform, you acknowledge that you have read and understood these Terms and agree to be bound by them and by the Privacy Policy, which forms an integral part of them."
+                },
+                {
+                    "type": "p",
+                    "text": "If you do not agree to these Terms, do not use the platform."
+                }
+            ]
+        },
+        {
+            "title": "Definitions",
+            "blocks": [
+                {
+                    "type": "table",
+                    "rows": [
+                        [
+                            "Platform",
+                            "The Creda website, the Buyer portal, the Supplier portal, and the related services."
+                        ],
+                        [
+                            "User",
+                            "Any business registered on the platform as a buyer or a supplier, and those who represent it."
+                        ],
+                        [
+                            "Buyer",
+                            "A commercial business registered in the Kingdom that purchases food products through the platform, such as stores, hypermarkets, restaurants and distributors."
+                        ],
+                        [
+                            "Supplier",
+                            "A commercial business registered in the Kingdom that lists its food products for sale through the platform."
+                        ],
+                        [
+                            "Order",
+                            "A purchase request submitted by a buyer to a supplier through the platform."
+                        ],
+                        [
+                            "Deferred Payment",
+                            "Payment of the order value in full, in a single payment, at the end of a payment period set by the supplier, starting from the date of the order’s final confirmation."
+                        ],
+                        [
+                            "Deferred Obligation",
+                            "The amount owed by the buyer to the supplier for a finally confirmed deferred order, and its due date."
+                        ],
+                        [
+                            "Credit Score",
+                            "An internal indicator from zero to one hundred calculated by the platform from the buyer’s repayment record, according to the methodology described in the Privacy Policy."
+                        ],
+                        [
+                            "Promissory Note",
+                            "An electronic promissory note issued by the buyer in favor of the supplier through the Nafith platform, with its number and copy attached to the order."
+                        ],
+                        [
+                            "Subscription",
+                            "A plan chosen by the supplier from the plans available on the platform, with or without a fee, that defines its usage limits and capabilities."
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Nature and Role of the Platform",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Creda is a digital intermediary that connects suppliers with commercial buyers and provides them with tools to manage orders, deferred sales and receivables follow-up.",
+                        "Creda is not a party to the sale contract between the supplier and the buyer. The sale contract is formed directly between the supplier and the buyer when the supplier gives the order’s final confirmation. If the order is conditional on a promissory note, the supplier’s initial acceptance is a conditional acceptance, and the final confirmation is not issued, nor does the payment period begin, until the note has been uploaded and accepted by the supplier. Each party is responsible for performing its obligations under the contract.",
+                        "Creda is not a financing entity, does not grant credit, and does not guarantee payment of any obligation. The supplier alone decides on deferred sales, sets their terms, and bears their risks.",
+                        "Creda does not process order payments between the buyer and the supplier; it only records them. Subscription fees are paid through the approved payment service provider.",
+                        "Creda does not issue promissory notes and does not verify their legal validity; it only keeps their reference and copy.",
+                        "Creda does not sell products and does not guarantee the quality, conformity, safety or availability of the listed products; the supplier alone is responsible for that."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Eligibility, Registration and Verification",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "The platform is intended for commercial businesses registered in the Kingdom of Saudi Arabia that hold a valid commercial registration and tax number. Individuals may not register in their personal capacity.",
+                        "The account is created in the name of the business and managed by an authorized representative who is at least eighteen years old. You acknowledge that you have the authority to bind the business to these Terms.",
+                        "You undertake to provide accurate, complete and up-to-date information at registration and to upload the required verification documents: the commercial registration, the VAT certificate, the ID of the authorized signatory, and the bank account letter. For a sole proprietorship: the owner’s ID number and a copy of the ID.",
+                        "The account remains inactive until Creda reviews the documents and activates it. Creda may reject a registration or request additional or alternative documents without giving reasons.",
+                        "A single business may not create more than one account in the same capacity.",
+                        "After activation, the business type, name, commercial registration number, tax number and ID number cannot be edited from the account; they are corrected through the administration team after verification."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Account and Security",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "You are responsible for the confidentiality of your account login details and for everything done through your account. Do not share your password or verification code with anyone.",
+                        "All orders, confirmations and declarations issued from your account are considered issued by the business and are binding on it.",
+                        "Notify us immediately if you suspect any unauthorized use of your account.",
+                        "You undertake to update your contact details and national address when they change. Changing the mobile number or email address requires verifying the new number or email."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Supplier Obligations",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Complete the business profile, service areas and delivery settings before publishing products.",
+                        "List licensed food products that comply with the regulations in force in the Kingdom, including the requirements of the Saudi Food and Drug Authority, with accurate descriptions, prices, certificates and stock levels.",
+                        "Set the deferred payment period, promissory note rules and credit limits in your settings before receiving deferred orders; any changes to these settings apply to new orders only.",
+                        "Review incoming orders and accept or reject them, stating the reason for rejection, and fulfill finally confirmed orders on the announced dates.",
+                        "Record every payment you receive from the buyer on the platform accurately as soon as it is received; you are responsible for the accuracy of what you record.",
+                        "Issue tax invoices in accordance with the tax regulations in the Kingdom.",
+                        "Maintain an up-to-date verification file and upload any replacement document when one expires."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Buyer Obligations",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Place orders with genuine purchase intent and in quantities not below the minimum set by the supplier.",
+                        "Pay the full value of each finally confirmed deferred order on its due date, through the channel agreed with the supplier, outside the platform.",
+                        "Issue the promissory note through the Nafith platform when the supplier requires it, and attach its correct number and copy to the order.",
+                        "Review and acknowledge the expected delivery date before placing the order, and receive the order and confirm receipt on the platform.",
+                        "Dispute any incorrectly recorded payment within ten days of the date it was recorded on the platform. If no dispute is submitted within this period, the record is presumed correct for the purposes of the platform’s calculations based on the available data, without preventing the correction of a material error later proven by acceptable documents."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Orders and Their Lifecycle",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Each order’s cart contains products from a single supplier.",
+                        "When completing the order, the buyer chooses the payment method (immediate or deferred) and the receiving method (delivery or pickup from the supplier). The delivery fee set by the supplier according to the city is added to the order total.",
+                        "An order starts with the status “Awaiting supplier review.” The sale is concluded upon the supplier’s final confirmation, and the deferred payment period is calculated from the date of final confirmation.",
+                        "If a promissory note is required, the supplier’s initial acceptance is a conditional acceptance, and the order remains pending until the buyer uploads the note details and the supplier accepts them, at which point the final confirmation is issued.",
+                        "If no promissory note is required, the supplier’s acceptance of the order is its final confirmation.",
+                        "The supplier updates the order status until delivery or readiness for pickup, and the buyer confirms receipt, which completes the order.",
+                        "The supplier may reject any order before final confirmation. After final confirmation, the sale contract may be cancelled only by agreement of the supplier and the buyer or in accordance with applicable regulations. Creda may suspend the processing of an order or change its status within the platform in the cases set out in Section 15, without this in itself constituting termination of the sale contract.",
+                        "The displayed prices are the supplier’s prices and are fixed when the order is placed. If a promotional offer ends before the order is placed, the original price applies."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Deferred Payment and Receivables",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "The supplier decides on deferred sales for each buyer according to its policy, and may set or change a credit limit for each buyer at any time without affecting finally confirmed orders.",
+                        "A deferred order is paid in full in a single payment on its due date. The platform does not support payment in installments or partial payment.",
+                        "The payment period and the estimated due date are shown to the buyer before the order is placed, and the payment period is fixed at placement.",
+                        "Payments are made outside the platform through existing channels (bank transfer, cash, mada) and are recorded by the supplier on the platform. A payment is considered paid from the date the supplier received it, not from the date it was recorded.",
+                        "A deferred obligation is classified on the platform as: due, overdue or paid. Late payment affects the buyer’s credit score.",
+                        "The platform sends reminders before the due date and alerts after it is overdue; this is an assistive service that does not waive the buyer’s obligation to pay and does not make Creda responsible for collection.",
+                        "Collecting overdue receivables is the supplier’s responsibility, and the supplier may take whatever legal action it sees fit, including enforcing the promissory note, without any involvement from Creda."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Credit Score and Confidence Level",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "The platform calculates for each buyer an internal credit score from its repayment record on the platform only, and a confidence-level indicator that reflects the amount of data on which the score is based.",
+                        "The score is an aid for the supplier when deciding on a deferred sale; it is not a recommendation from Creda nor a guarantee of the buyer’s behavior. Creda is not responsible for any decision the supplier makes based on it.",
+                        "The score is not linked to any credit information bureau or central bank, and is not shared with any party outside the platform.",
+                        "In all plans, the supplier can see the score, the confidence level and the amounts owed to it, as well as the ratings written about the buyer by other suppliers after completing their dealings. The comprehensive credit report is available only to a supplier subscribed to a plan that includes it, and no supplier can see the details of the buyer’s dealings with other suppliers.",
+                        "The buyer may view its score and credit report at any time, and dispute any incorrectly recorded payment.",
+                        "Creda may modify the scoring formula and its weights, and the change applies to calculations made after it."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Promissory Note",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "The supplier may require an electronic promissory note for any deferred order, either by a general rule in its settings (order value, score, dealing history or credit limit) or by a specific decision for a particular buyer.",
+                        "When the condition applies, the platform notifies the buyer immediately, and the buyer issues the note itself through the Nafith platform in favor of the supplier for the order value.",
+                        "The buyer uploads the note number and its copy on the platform, and the supplier reviews them and accepts or rejects them, stating the reason.",
+                        "The note is a direct relationship between the buyer and the supplier, subject to the commercial papers law and the enforcement provisions in the Kingdom. Creda is not a party to it and does not guarantee its validity or enforcement."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Supplier Subscriptions",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "A supplier account is activated after verification on the default free plan, and the supplier may upgrade to a paid plan from the plans displayed on the platform.",
+                        "Each plan sets limits on the number of products and coverage areas, access to the buyer’s comprehensive credit report in accordance with the Privacy Policy, promotional offers, and the ability to export the supplier’s own reports and data. Fees and subscription duration are shown before confirmation.",
+                        "Subscription fees are paid by card through the approved payment service provider, in which case the subscription is activated immediately, or by bank transfer with the receipt uploaded, in which case it is activated after Creda confirms receipt of the amount.",
+                        "An upgrade takes effect immediately, with the fee difference calculated proportionally for the remaining period. A downgrade takes effect at the end of the paid period, without a refund.",
+                        "The subscription is not renewed automatically, and the platform does not store card data. The supplier renews its subscription itself before it expires.",
+                        "The supplier may cancel its subscription; the subscription continues with all its benefits until the end of the paid period, and fees for the remaining period are not refunded except as required by law.",
+                        "When a subscription expires without renewal, the supplier is given a grace period of ten days, after which the account moves to a “restricted” status: publishing products and receiving new orders stop and products are hidden from search, while all tools for recording payments, following up receivables and notes, and completing ongoing orders remain available.",
+                        "No supplier content is deleted because of a plan change. Content exceeding the new plan’s limits is only unpublished, and the supplier chooses what remains published.",
+                        "Creda may modify the plans and their fees. Fee increases or reduced limits apply at the next renewal and not to the current period, and the supplier is notified in advance.",
+                        "Subscription fees are subject to value added tax according to the regulations in force, and a tax invoice is issued for them."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Promotional Offers and Ratings",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "An authorized supplier may create promotional offers with a percentage discount or a reduced price for a specified period, and is responsible for their accuracy. Creda may immediately stop any non-compliant offer and notify the supplier.",
+                        "The promotional price is the order’s final price and is the basis for the value of the deferred obligation and the promissory note.",
+                        "After an order is completed, each party may rate the other once, with a rating from one to five stars and an optional comment. The rating must be honest, related to the dealing, and free of abuse or the personal data of other parties.",
+                        "Creda may delete any non-compliant rating and is not responsible for users’ opinions."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Prohibited Use",
+            "blocks": [
+                {
+                    "type": "p",
+                    "text": "You are prohibited from:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Providing forged or misleading data or documents, or impersonating another business.",
+                        "Placing fictitious orders, manipulating the credit score or ratings, or recording payments that did not take place.",
+                        "Using the platform for any activity that violates the regulations, or listing prohibited or unlicensed products.",
+                        "Communicating with the other party to complete the dealing outside the platform in order to evade the obligations of these Terms.",
+                        "Collecting other users’ data or using it for any purpose other than dealing through the platform.",
+                        "Attempting unauthorized access to the platform or its systems, disrupting them, or using automated software to extract their content.",
+                        "Reselling the platform’s services or licensing them to others."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Suspension and Termination of Account",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Creda may temporarily suspend or terminate the account if these Terms are violated, fraud is suspected, incorrect data is provided, or at the request of a competent authority, and will notify you of the reason unless the law prevents it.",
+                        "Creda may suspend the processing of an order or change its status to “Cancelled” within the platform if it cannot be completed for operational, security or regulatory reasons, or to protect the platform or its users, notifying both parties where possible. This action does not in itself constitute termination of the sale contract between the supplier and the buyer, unless the parties agree to it or the law requires it.",
+                        "You may request the closure of your account at any time; the request is carried out after settling existing obligations and completing ongoing orders.",
+                        "Suspension or closure does not waive any existing obligation between the buyer and the supplier, nor any subscription fees due, and records remain retained in accordance with the Privacy Policy."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Intellectual Property",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "The platform, its design, software, the Creda brand and its content are owned by Creda or its licensors, and these Terms grant you only the right to use the platform for your business purposes in accordance with them.",
+                        "You retain ownership of the content you upload (logos, product images, descriptions and documents), and you grant Creda a non-exclusive license to display and process it to the extent necessary to operate the platform.",
+                        "You acknowledge that you have the right to all content you upload and that it does not infringe the rights of others."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Platform Availability and Limitation of Liability",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "We strive to make the platform available around the clock, but we do not guarantee that it will be free of interruptions or errors. We may suspend it temporarily for maintenance or updates with prior notice where possible.",
+                        "The platform is provided as is, and Creda does not guarantee any commercial result from using it.",
+                        "Creda bears no responsibility for: the quality or delivery of products, the buyer’s failure to pay, the accuracy of data entered by users, deferred sale decisions, the enforcement of promissory notes, or any dispute between a buyer and a supplier.",
+                        "Creda is not liable for indirect or consequential damages or for loss of profits or business opportunities.",
+                        "In all cases, Creda’s liability to the supplier shall not exceed the total subscription fees paid in the thirty days preceding the incident, to the extent permitted by law. The buyer pays no fees to Creda, and its use of the platform is limited to what the platform provides as is.",
+                        "You undertake to indemnify Creda against any third-party claim arising from your violation of these Terms, the regulations or the rights of others.",
+                        "Creda is not responsible for any delay, interruption or failure to provide the service resulting from a cause beyond its reasonable control, including telecommunications or power outages, failures of service providers or government services, cyberattacks, disasters, or decisions and actions issued by competent authorities.",
+                        "Some platform features may depend on services provided by third parties, such as payment, note issuance, verification, messaging and hosting services. Creda does not guarantee the continuity of these services or that they will be free of interruption or error, and is not responsible for the actions or policies of these service providers or for any failure beyond Creda’s control, to the extent permitted by law."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Disputes and Support",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Disputes between the buyer and the supplier regarding products, delivery or payment are resolved directly between them. The platform provides a tool to dispute recorded payments. Creda reviews payment disputes based on the data and documents provided by both parties, and may request additional documents or reject the dispute when the evidence is insufficient. Creda is not obliged to conduct an investigation outside the platform, and the effect of its decision is limited to correcting the payment record and score within the platform; it is not an adjudication of the rights or legal claims between the parties.",
+                        "For any inquiry or technical issue, you can open a support request from the platform or write to us at private@creda.sa or call 00966138091111.",
+                        "Any dispute between you and Creda regarding these Terms shall be attempted to be resolved amicably within thirty days of notice of it, failing which it shall be referred to the competent authorities in the Kingdom of Saudi Arabia."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "General Provisions",
+            "blocks": [
+                {
+                    "type": "list",
+                    "items": [
+                        "These Terms are governed by and construed in accordance with the laws of the Kingdom of Saudi Arabia.",
+                        "Creda may amend these Terms. The user will be notified of any material amendment through the platform or by email at least fifteen days before it takes effect, and your continued use of the platform after it takes effect constitutes acceptance of the amendment. Any amendment that must be applied immediately to comply with a legal requirement, to address a security risk or fraud, or to protect the platform, its users or the continuity of the service is exempt from the notice period, provided that notice is given as soon as possible. This exception does not apply to any amendment that requires the user’s consent under applicable regulations.",
+                        "You may not assign your rights or obligations under these Terms without Creda’s written consent. Creda may assign them to whoever takes over the operation of the platform, with notice to you.",
+                        "If any provision of these Terms is held invalid, the remaining provisions are not affected.",
+                        "Creda’s failure to enforce any provision does not constitute a waiver of it.",
+                        "These Terms and the Privacy Policy constitute the entire agreement between you and Creda regarding the use of the platform.",
+                        "These Terms are available in Arabic and English, and the Arabic text prevails in case of any discrepancy."
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Contact Us",
+            "blocks": [
+                {
+                    "type": "table",
+                    "rows": [
+                        [
+                            "Entity",
+                            "Creda Solutions Trading Company Limited"
+                        ],
+                        [
+                            "Email",
+                            "private@creda.sa"
+                        ],
+                        [
+                            "Phone",
+                            "00966138091111"
+                        ],
+                        [
+                            "Address",
+                            "Kingdom of Saudi Arabia – Dammam – Short Address EMDA6372"
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}
