@@ -1,0 +1,51 @@
+# creda-landing -> https://creda.sa
+name: Deploy to production
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Upload code
+        run: |
+          rsync -az --delete \
+            --exclude='.git' \
+            --exclude='node_modules/' \
+            --exclude='.next/' \
+            --exclude='.env.production' \
+            --exclude='DEPLOYED_VERSION' \
+            -e "ssh -i ~/.ssh/id_ed25519" \
+            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/landing/"
+
+      - name: Build and restart
+        run: |
+          ssh -i ~/.ssh/id_ed25519 "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "creda-deploy landing && printf 'landing  %s  (%s) deployed %s\n' '${{ github.sha }}' '${{ github.ref_name }}' \"\$(date -u +%Y-%m-%dT%H:%MZ)\" | sudo tee /var/www/landing/DEPLOYED_VERSION >/dev/null"
+
+      - name: Health check
+        run: |
+          for i in $(seq 1 15); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://creda.sa/ || true)
+            echo "attempt $i -> $code"
+            if [ "$code" = "200" ]; then echo "healthy"; exit 0; fi
+            sleep 4
+          done
+          echo "::error::health check never returned 200"
+          exit 1
