@@ -40,13 +40,6 @@ export default async function RootLayout({
   return (
     <html lang={lang} dir={getDir(lang)} className={`${cairo.variable} h-full`}>
       <body className="flex min-h-screen flex-col bg-white font-sans text-ink">
-        <Header
-          lang={lang}
-          t={site.header}
-          logoAlt={common.logoAlt}
-          registerSupplier={common.registerSupplier}
-          startBuying={common.startBuying}
-        />
         <div className="flex-1">{children}</div>
         <Footer lang={lang} t={site.footer} logoAlt={common.logoAlt} />
       </body>
